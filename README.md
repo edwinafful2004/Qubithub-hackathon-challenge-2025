@@ -19,7 +19,7 @@ The circuit was successfully validated across the following pipeline:
 ## Project Assets
 * **[Bell_State_Challenge_Report.pdf](./Bell_State_Challenge_Report.pdf)**: Comprehensive technical audit detailing "Fail-States," version mismatch analysis, and statistical validation of Pauli Expectation values.
 * **[code.py](./code.py)**: A production-ready script optimized for **Google Colab**, featuring automated dependency management and unified result visualization.
-* **[Participation Certificate](./Qiskit_FallFest_Certificate_Edwin_Afful.pdf)**: Official recognition from the **IBM Qiskit Fall Fest x QubitHub 2025**.
+* **[Participation Certificate](./Participation Certificate.pdf)**: Official recognition from the **IBM Qiskit Fall Fest x QubitHub 2025**.
 
 ---
 
@@ -56,7 +56,7 @@ This repository is optimized for **one-click verification** in Google Colab:
 
 ## Certification & Recognition
 **IBM Qiskit Fall Fest x QubitHub 2025** I participated in this technical challenge to benchmark the limits of cross-platform quantum transcription. This repository represents my successful implementation and documentation of the 2-qubit Bell State migration.  
-**[View Participation Certificate](./Qiskit_FallFest_Certificate_Edwin_Afful.pdf)**
+**[View Participation Certificate](./Participation Certificate.pdf)**
 
 ---
 
