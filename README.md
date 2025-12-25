@@ -1,37 +1,69 @@
-# QInterpreter Real-World Application Challenge
+# QubitHUB QInterpreter Challenge: Bell State Hackathon 
+> **Event:** IBM Qiskit Fall Fest x QubitHub 2025  
+> **Researcher:** Edwin Kofi Afful  
+> **Focus:** Cross-Platform Quantum Interoperability & Circuit Transcription
 
-This repository contains the submission for the QubitHUB QInterpreter Challenge. The project analyzes the translation of a 2-Qubit Bell State across multiple quantum frameworks, documenting and fixing compatibility issues.
+---
 
-## Project Files
+## The Challenge
+The core objective of this project was to evaluate the **QInterpreter** transcription engine by implementing a 2-qubit Bell State $|\Phi^+\rangle$ and successfully migrating it across five distinct quantum programming ecosystems. 
 
-This repository contains two primary files:
+As a hackathon entry, this project demonstrates the ability to rapidly diagnose **Intermediate Representation (IR) bugs** and engineer real-time architectural patches to maintain data integrity across heterogeneous backends.
 
-- **Bell_State_Challenge_Report.pdf**: The complete solution document. This PDF details the chosen problem (2-Qubit Bell State), the original Qiskit code, the translation issues found (e.g., deprecated functions, backend errors, measurement mismatches), the fixes and workarounds applied, and a final comparison of results.
-- **code.py**: A Python script (originally from Google Colab) containing the complete, working, and fixed code for all tested frameworks:
-  - Qiskit (Original Implementation)
-  - Cirq (Translated & Fixed)
-  - PennyLane (Translated & Fixed)
-  - Amazon Braket (Translated & Fixed)
-  - PyQuil (Translated & Fixed)
+### 🛠️ The Multi-Framework Stack
+The circuit was successfully validated across the following pipeline:
+**Qiskit** (Source) $\longrightarrow$ **Cirq** $\longrightarrow$ **PennyLane** $\longrightarrow$ **Amazon Braket** $\longrightarrow$ **PyQuil**
+
+---
+
+## Project Assets
+* **[Bell_State_Challenge_Report.pdf](./Bell_State_Challenge_Report.pdf)**: Comprehensive technical audit detailing "Fail-States," version mismatch analysis, and statistical validation of Pauli Expectation values.
+* **[code.py](./code.py)**: A production-ready script optimized for **Google Colab**, featuring automated dependency management and unified result visualization.
+* **[Participation Certificate](./Qiskit_FallFest_Certificate_Edwin_Afful.pdf)**: Official recognition from the **IBM Qiskit Fall Fest x QubitHub 2025**.
+
+---
+
+## Technical Debugging & Patches
+Under hackathon constraints, I identified and resolved several systemic "breaking" issues to ensure cross-platform parity:
+
+| Issue | Root Cause | Engineering Patch |
+| :--- | :--- | :--- |
+| **Convention Mismatch** | PennyLane uses $\pm 1$ eigenvalues; Qiskit uses $0/1$ bits. | Engineered an inline normalization function to standardize output. |
+| **Backend Isolation** | Cloud QVMs (PyQuil/Braket) unreachable in Colab. | Re-engineered the stack to use `WavefunctionSimulator` and `LocalSimulator`. |
+| **API Deprecation** | Legacy Qiskit syntax caused execution termination. | Migrated to the modern `AerSimulator()` stable API. |
+| **Bit-Ordering** | Inconsistent qubit mapping (MSB vs LSB) across frameworks. | Applied bit-reversal scripts to ensure '00' and '11' state parity. |
+
+---
+
+## Benchmarks (1024 Shots)
+| Framework | '00' Counts | '11' Counts | Result |
+| :--- | :--- | :--- | :--- |
+| **Qiskit** | ~512 | ~512 | ✅ Validated |
+| **PennyLane** | ~510 | ~514 | ✅ Validated |
+| **PyQuil** | ~515 | ~509 | ✅ Validated |
+| **Braket** | ~520 | ~504 | ✅ Validated |
+| **Cirq** | ~511 | ~513 | ✅ Validated |
+
+---
 
 ## How to Run
+This repository is optimized for **one-click verification** in Google Colab:
+1. Open a new notebook in **Google Colab**.
+2. Upload **`code.py`**.
+3. Execute the script. It will automatically install the necessary quantum libraries and generate the comparison matrix.
 
-The code.py file is designed to be run in an environment like **Google Colab** or a **Jupyter Notebook**.
+---
 
-- Open [Google Colab](https://colab.research.google.com/).
-- Go to File > Upload notebook and select the code.py file from this repository.
-- Run the cells in order.
+## Certification & Recognition
+**IBM Qiskit Fall Fest x QubitHub 2025** I participated in this technical challenge to benchmark the limits of cross-platform quantum transcription. This repository represents my successful implementation and documentation of the 2-qubit Bell State migration.  
+**[View Participation Certificate](./Qiskit_FallFest_Certificate_Edwin_Afful.pdf)**
 
-All necessary Python libraries (Qiskit, Cirq, etc.) are installed directly by the script using !pip install commands.
+---
 
-## Summary of Findings
+## Skills Demonstrated
+* **Quantum DevOps:** Automated environment setup and cross-platform library management.
+* **Transcription Auditing:** Deep-dive analysis of Intermediate Representations (IR).
+* **Statistical Verification:** Ensuring physical consistency ($\langle X \otimes X \rangle, \langle Z \otimes Z \rangle$) across simulators.
 
-This project successfully translated a Qiskit Bell State circuit and identified several key cross-framework compatibility issues, which are detailed in the report. Key findings include:
-
-- **Deprecated Functions**: Updating Aer.get_backend() to AerSimulator() in Qiskit.
-- **Backend Mismatches**: Replacing cloud-based backends with local simulators (e.g., LocalSimulator for Braket, WavefunctionSimulator for PyQuil).
-- **Measurement Convention Errors**: Manually normalizing PennyLane's \[+1, -1\] eigenvalue
-
-results to Qiskit's \[0, 1\] bit format.
-
-- **Data Format Differences**: Converting the output of Amazon Braket's measurement array into standard bitstrings for comparison.
+---
+**Conclusion:** This project confirms that while automated tools like QInterpreter are vital for the ecosystem, **human oversight (Quantum DevOps)** is essential to resolve hardware-specific measurement conventions and backend mismatches.
